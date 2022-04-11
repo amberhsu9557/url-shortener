@@ -14,7 +14,7 @@ class BaseConfig:
     LOG_DIR = '/tmp/logs'
 
     # Session
-    SECRET_KEY = os.getenv('SECRET_KEY')
+    SECRET_KEY = os.getenv('SECRETS')
     PERMANENT_SESSION_LIFETIME = timedelta(days=14)
 
     # Transfer
