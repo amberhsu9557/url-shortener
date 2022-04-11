@@ -2,15 +2,14 @@
 
 A lightweight url shortener which can run with native docker & kubernetes.
 
-![image](exampleimg/demo.gif)
-
-
 Our project has developed with those awesome packages, and please kindly refer to our project structure as below
 - [x] Flask
 - [x] Redis
 - [x] PostgreSQL
 - [x] Celery
 - [x] Nginx
+
+![image](exampleimg/demo.gif)
 
 ___
 ## Steps
