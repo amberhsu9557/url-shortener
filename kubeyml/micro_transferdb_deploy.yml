@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transferdb
+  namespace: micro
+  labels:
+    app: transferdb
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: transferdb
+  template:
+    metadata:
+      labels:
+        app: transferdb
+    spec:
+      dnsPolicy: ClusterFirst
+      schedulerName: default-scheduler
+      containers:
+        - name: micro-transferdb
+          image: postgres:13
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: micro-develop
+                  key: TRANSFERSERVICE_DB
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: micro-develop
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: micro-develop-credentials
+                  key: POSTGRES_PASSWORD
+          volumeMounts:
+            - name: tz-config
+              mountPath: /etc/localtime
+              readOnly: true
+            - name: pgdata-transferdb
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: tz-config
+          hostPath:
+            path: /usr/share/zoneinfo/Asia/Taipei
+        - name: pgdata-transferdb
+          persistentVolumeClaim:
+            claimName: micro-transferdb-pvc

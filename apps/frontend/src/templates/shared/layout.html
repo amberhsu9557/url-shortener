@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="{{ _('zh-TW')}}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>{{ _('URL Shortener')}}</title>
+    <meta name="description" content="{{ _('電子報訂閱，每週四，掌握行銷大小事')}}">
+    <meta name="keywords"
+        content="Google Product updates,SEO Announce,FB Product updates,E-commerce platform,Google Tag Manager">
+    <meta property="og:title" content="{{ _('URL Shortener')}}" />
+    <meta property="og:image"
+        content="{{ url_for('static', filename='img/uavatar.png', _external=True, _scheme='http') }}" />
+    <meta property="og:description" content="{{ _('電子報訂閱，每週四，掌握行銷大小事')}}" />
+    <meta property="og:locale" content="{{ _('zh_TW')}}" />
+
+    <!-- fornt-awsome.css -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:black" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- bootstrap.css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.5.0/css/bootstrap4-toggle.min.css"
+        rel="stylesheet">
+
+    <!-- Adding a favicon -->
+    <!-- <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}"> -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/uavatar.png') }}">
+
+    <!-- Adding Custom css -->
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/layout.css')}}">
+
+    {% block head %}
+
+    {% endblock %}
+</head>
+
+<body class='mode dark'>
+    <!-- 使用sweetalert.js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+    <!-- jquery.js -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <!-- 使用axios.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    
+    <!-- clipboard.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+
+    <!-- Adding Mode & Language Type js -->
+    <script>
+        (function () {
+            function setCookie(cname, cvalue, exdays) {
+                var d = new Date();
+                var exdays = exdays ? exdays : 7; // 預設 7 天
+                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                var expires = 'expires=' + d.toGMTString();
+                var path = 'path=/';
+                document.cookie = cname + '=' + cvalue + '; ' + expires + '; ' + path;
+            }
+
+            function getCookie(cname) {
+                var name = cname + '=';
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i].trim();
+                    if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+                }
+                return '';
+            }
+        })()
+    </script>
+
+
+    {% include 'shared/header.html'%}
+
+    {% block body %}
+    {% endblock %}
+
+    <!-- bootstrap.js -->
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.5.0/js/bootstrap4-toggle.min.js"></script>
+
+    <script>
+        var link = document.createElement('meta');
+        link.setAttribute('property', 'og:url');
+        link.content = document.location;
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+    <script>
+        var link = document.createElement('link');
+        link.setAttribute('rel', 'canonical');
+        link.href = document.location;
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+</body>
+
+</html>

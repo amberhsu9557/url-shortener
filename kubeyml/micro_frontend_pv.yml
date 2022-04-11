@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: micro-frontend-pv
+  labels:
+    type: local
+spec:
+  storageClassName: local-storage
+  persistentVolumeReclaimPolicy: Retain
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /data/microapps/frontend
+  # nodeAffinity: ## 必要欄位，目的是為了讓 k8s scheduler 可以協助找到合適的 node
+  #   required:
+  #     nodeSelectorTerms:
+  #     - matchExpressions:
+  #       - key: kubernetes.io/hostname
+  #         operator: In
+  #         values:
+  #         - example-node
+
+# ---
+# kind: StorageClass
+# apiVersion: storage.k8s.io/v1
+# metadata:
+#   name: local-storage
+# provisioner: kubernetes.io/no-provisioner
+# volumeBindingMode: WaitForFirstConsumer

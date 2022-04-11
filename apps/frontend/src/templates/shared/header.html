@@ -1,0 +1,24 @@
+<!-- header 區塊 -->
+<header>
+    <div class="container">
+        <div class='col-12'>
+            <div class='row justify-content-center pb-5'>
+                <div class='col-12 col-sm-12 col-md-10 col-lg-8 col-xl-8'>
+                    <div class='row justify-content-center'>
+                        <a href="/">
+                            <img src="{{ url_for('static', filename='img/uavatar.png') }}"
+                                style="margin-bottom:0;width:4.2rem;height:4.2rem;border-radius:50%;">
+                        </a>
+                    </div>
+                    <div class='row justify-content-center'>
+                        <h1>
+                            <a href='/' style="box-shadow:none;text-decoration:none;color:var(--textTitle)">
+                                {{ _('URL Shortener')}}
+                            </a>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

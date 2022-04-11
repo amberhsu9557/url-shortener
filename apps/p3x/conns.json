@@ -1,0 +1,17 @@
+{
+    "update": "2021-08-28T10:38:25.754Z",
+    "list": [
+        {
+            "awsElastiCache": false,
+            "azure": false,
+            "name": "redis",
+            "host": "redis",
+            "port": 6379,
+            "username": "",
+            "id": "P3Xid04af05c8b71010008e1cb921abae0a",
+            "cluster": false,
+            "nodes": [],
+            "password": "micro"
+        }
+    ]
+}

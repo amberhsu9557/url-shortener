@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: micro-frontend-pvc
+  labels:
+    type: local
+spec:
+  storageClassName: local-storage
+  volumeName: micro-frontend-pv
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: micro-develop
+  namespace: micro
+data:
+  FLASK_ENV: "development"
+  FLASK_DEBUG: "true"
+  POSTGRES_USER: "micro"
+  TRANSFERSERVICE_DB: "transferservice"

@@ -1,0 +1,81 @@
+{% extends 'shared/layout.html'%}
+{% block head %}
+{% endblock%}
+{% block body %}
+
+<section id='subscribe_email_area'>
+    <div class='container'>
+        <div class='col-12'>
+            <div class='row justify-content-center pb-5'>
+                <div class='col-12 col-sm-12 col-md-10 col-lg-8 col-xl-8'>
+                    <form onsubmit='transfer(event)'>
+                        <div class='form-group row no-gutters justify-content-center'>
+                            <div class='col-8 col-md-10'>
+                                <input type='url' id='targetUrl' name='targetUrl' class='form-control form-control'
+                                    placeholder='http://www.google.com' required>
+                            </div>
+                            <div>
+                                <button type='submit' id='transferUrlBtn' class='btn btn-dark btn'>{{ _('Transfer')}}<span
+                                        id='str'></span></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function transfer(event) {
+        const data = {
+            targetUrl: document.getElementById('targetUrl').value
+        }
+        event.preventDefault()
+
+        axios.post('/v1/api/transfer/shorten', data, {
+                headers: {
+                    'x-csrf-token': '{{ csrf_token() }}'
+                }
+            })
+            .then(response => {
+                if (response.status === 200) {
+                    document.getElementById('targetUrl').value = ''
+                    const key = response.data['result']['key']
+                    const gen_url = location.protocol + '//' + location.host + '/' + key
+                    // const el = `<a href=${gen_url} target="_blank" id=genUrl>${gen_url}</a>`
+                    const el = `<input class="swal2-input" id="genUrl" value=${gen_url} style="dispaly: flex"><button type="button" class="swal2-confirm swal2-styled" id="copyButton" aria-label style="display: inline-block; border-left-color: rgb(48, 133, 214); border-right-color: rgb(48, 133, 214);" onclick="copyText()">COPY</button>`
+                    console.log(gen_url)
+                    Swal.fire({
+                        title: "Transfer Successfully!",
+                        html: el,
+                        type: 'success',
+                        showCloseButton: true,
+                        showConfirmButton: false
+                    })
+                }
+            })
+            .catch(err => {
+                console.log(err)
+                const msg = (err.response.data.code + ': ' + err.response.data.msg) || err.message
+                Swal.fire({
+                    title: "Transfer Failed!",
+                    text: msg || err.message,
+                    type: 'error'
+                });
+            })
+    }
+
+    function copyText(){
+        let res = document.getElementById("genUrl")
+        console.log(res.value)
+        res.focus()
+        res.select()
+        document.execCommand('copy')
+        let btn = document.getElementById("copyButton")
+        if(btn.innerText === "COPY"){
+            btn.innerText = "Copied"
+        }
+    }
+</script>
+{% endblock%}

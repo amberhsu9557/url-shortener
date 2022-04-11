@@ -1,0 +1,56 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: transferapp-migration
+  namespace: micro
+  labels:
+    app: transferapp  
+  annotations:
+spec: 
+  backoffLimit: 0
+  template: 
+    metadata:
+      labels:
+        app: transferapp    
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: micro-transferapp-migration-job
+        image: micro/transferservice:latest
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/sh", "-c"]
+        args:
+          - flask db init;
+            flask db migrate;
+            flask db upgrade;
+        env:
+          - name: FLASK_ENV
+            valueFrom:
+              configMapKeyRef:
+                name: micro-develop
+                key: FLASK_ENV
+          - name: FLASK_DEBUG
+            valueFrom:
+              configMapKeyRef:
+                name: micro-develop
+                key: FLASK_DEBUG
+          - name: REDIS_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: micro-develop-credentials
+                key: REDIS_PASSWORD                  
+          - name: POSTGRES_DB
+            valueFrom:
+              configMapKeyRef:
+                name: micro-develop
+                key: TRANSFERSERVICE_DB
+          - name: POSTGRES_USER
+            valueFrom:
+              configMapKeyRef:
+                name: micro-develop
+                key: POSTGRES_USER
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: micro-develop-credentials
+                key: POSTGRES_PASSWORD
