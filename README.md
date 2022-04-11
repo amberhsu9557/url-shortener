@@ -1,5 +1,5 @@
 # URL Shortener
-### `#Docker` `#Kubernetes` `#Flask` `#PostgreSQL`
+`#Docker` `#Kubernetes` `#Flask` `#PostgreSQL`
 A lightweight url shortener which can run with native docker & kubernetes. 
 
 ![image](exampleimg/demo.gif)
@@ -13,7 +13,6 @@ Our project has developed with those awesome packages, and please kindly refer t
 - [x] Nginx
 
 ``` lua
-project/
     ├── apps/   -- kind of services' config and source code 
         ├── frontend/
         ├── nginx/
@@ -48,7 +47,7 @@ bash deployer.sh down
 ```
 ___
 ## Run with k8s
-+ 1. Setup with YAML files in `kubeyml/`
+1. Setup with YAML files in `kubeyml/`
     ```sh
     # 1. Build Images (frontend, transferapp)
     docker build -t micro/frontend --build-arg APP_NAME=FlaskApp --build-arg FLASK_APP=main.py ./apps/frontend
@@ -98,12 +97,12 @@ ___
     kubectl apply -f ./kubeyml/micro_ingress.yml
 
     ```
-+ 2. Edit */etc/hosts* *C:\WINDOWS\system32\drivers\etc\hosts* or using hostctl
+2. Edit `/etc/hosts`
     ```
     127.0.0.0.1 url-shortener.test
     ```
 
-+ 3. Try it out:
+3. Try it out:
 
     ```sh
     curl http://http://url-shortener.test/
