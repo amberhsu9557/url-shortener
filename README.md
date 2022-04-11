@@ -1,8 +1,8 @@
 # URL Shortener
 
-A lightweight url shortener which can run with native docker & kubernetes.
+A lightweight URL shortener that can run with native Docker & Kubernetes.
 
-Our project has developed with those awesome packages, and please kindly refer to our project structure as below
+The project has developed with those awesome packages, and please kindly refer to our project structure below:
 - [x] Flask
 - [x] Redis
 - [x] PostgreSQL
