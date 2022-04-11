@@ -12,22 +12,6 @@ Our project has developed with those awesome packages, and please kindly refer t
 - [x] Celery
 - [x] Nginx
 
-``` lua
-    ├── apps/   -- kind of services' config and source code 
-        ├── frontend/
-        ├── nginx/
-        ├── p3x/
-        ├── redis/
-        └── transferservice/
-    ├── data/   -- store apps database
-        ├── pgadmin/
-        ├── redis/
-        └── transferdb/
-    ├── dockeryml/  --  define services in native docker
-    ├── kubeyml/  --  define services in k8s
-    ├── logs/
-    └── deployer.sh
-```
 ___
 ## Steps
 ## Run with native docker
