@@ -1,6 +1,6 @@
 # URL Shortener
 
-A lightweight url shortener which can run with native docker & kubernetes.   `#Docker` `#Kubernetes` `#Flask` `#PostgreSQL`
+A lightweight url shortener which can run with native docker & kubernetes.
 
 ![image](exampleimg/demo.gif)
 
